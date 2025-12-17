@@ -3,211 +3,266 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AIなんでも相談所 | 佐野佑一郎</title>
+    <title>AI Business Architect | Yuichiro Sano</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Noto+Sans+JP:wght@300;400;500;700&display=swap" rel="stylesheet">
     <style>
+        /* 高級感のあるフォント設定 */
         body {
             font-family: 'Inter', 'Noto Sans JP', sans-serif;
-            background-color: #ffffff;
-            color: #1d1d1f; /* Appleのテキストカラーに近い黒 */
+            background-color: #FAFAFA; /* 完全な白ではなく、目に優しいオフホワイト */
+            color: #111;
+            letter-spacing: -0.02em; /* 文字間を少し詰めて知的さを演出 */
         }
 
         /* スクロール時のフェードインアニメーション */
-        @keyframes fade-in-up {
-            0% {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            100% {
-                opacity: 1;
-                transform: translateY(0);
-            }
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 1s cubic-bezier(0.16, 1, 0.3, 1);
         }
-        .animate-on-scroll {
-            opacity: 0; /* 初期状態は透明 */
-            /* JavaScriptでクラスが付与されたらアニメーション開始 */
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
         }
-        .animate-on-scroll.is-visible {
-            animation: fade-in-up 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+
+        /* ガラスのような質感（Glassmorphism） */
+        .glass {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(0, 0, 0, 0.05);
         }
-        /* 遅延設定 */
-        .delay-100 { animation-delay: 0.1s; }
-        .delay-200 { animation-delay: 0.2s; }
-        .delay-300 { animation-delay: 0.3s; }
+
+        /* Apple風の滑らかなボタンホバー */
+        .btn-primary {
+            transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.3s ease;
+        }
+        .btn-primary:hover {
+            transform: scale(1.02);
+            box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.2);
+        }
     </style>
 </head>
 <body class="antialiased">
 
-    <nav class="fixed w-full z-50 bg-white/80 backdrop-blur-xl border-b border-slate-100">
-        <div class="max-w-[980px] mx-auto px-6 h-14 flex justify-between items-center">
-            <a href="#" class="font-semibold text-[15px] tracking-tight text-[#1d1d1f] hover:opacity-70 transition">
-                AIなんでも相談所
+    <nav class="fixed w-full z-50 glass border-b border-black/5">
+        <div class="max-w-[1080px] mx-auto px-6 h-16 flex justify-between items-center">
+            <a href="#" class="font-bold text-lg tracking-tight hover:opacity-70 transition">
+                Yuichiro Sano <span class="text-xs font-normal text-gray-500 ml-2">AI Business Architect</span>
             </a>
-            <div class="hidden md:flex gap-10 text-[13px] text-[#1d1d1f] opacity-80 font-medium">
-                <a href="#services" class="hover:opacity-100 transition">Services</a>
-                <a href="#works" class="hover:opacity-100 transition">Case Study</a>
-                <a href="#about" class="hover:opacity-100 transition">About</a>
-                <a href="#contact" class="hover:opacity-100 transition">Contact</a>
+            <div class="hidden md:flex gap-8 text-sm font-medium text-gray-600">
+                <a href="#philosophy" class="hover:text-black transition">Philosophy</a>
+                <a href="#works" class="hover:text-black transition">Case Study</a>
+                <a href="#services" class="hover:text-black transition">Services</a>
+                <a href="#contact" class="px-5 py-2 bg-black text-white rounded-full hover:bg-gray-800 transition">Contact</a>
             </div>
         </div>
     </nav>
 
-    <section class="min-h-[85vh] flex items-center pt-32 pb-20 px-6">
-        <div class="max-w-[980px] mx-auto text-center animate-on-scroll is-visible">
-            <h1 class="text-6xl md:text-8xl font-semibold mb-6 tracking-tighter leading-[1.05] text-[#1d1d1f]">
-                AIを、<br>現場の力に。
+    <section class="min-h-screen flex items-center justify-center pt-20 px-6">
+        <div class="max-w-4xl mx-auto text-center reveal active">
+            <p class="text-sm font-bold tracking-widest text-gray-500 mb-6 uppercase">AI Consultant / Editor</p>
+            <h1 class="text-5xl md:text-8xl font-semibold mb-8 leading-[1.1] tracking-tighter">
+                生成AIを<br>
+                「使える」で<br>
+                終わらせない。
             </h1>
-            <p class="text-xl md:text-2xl text-[#86868b] mb-12 max-w-2xl mx-auto font-medium leading-relaxed tracking-tight delay-100 animate-on-scroll is-visible">
-                最新の生成AI技術を、貴社の実務に最適化して実装。<br class="hidden md:inline">
-                導入支援から自動化ツール開発まで伴走するパートナーです。
+            <p class="text-xl md:text-2xl text-gray-500 mb-12 max-w-2xl mx-auto font-medium leading-relaxed">
+                単なる効率化ではありません。<br>
+                業務成果に直結する「属人化しないAI運用フロー」を構築する。<br>
+                それが私の仕事です。
             </p>
-            <div class="delay-200 animate-on-scroll is-visible">
-                <a href="#contact" class="inline-block px-8 py-4 bg-[#0071e3] text-white rounded-full font-medium text-lg hover:bg-[#0077ED] transition duration-300 ease-in-out transform hover:scale-105">
+            <div class="flex flex-col sm:flex-row justify-center gap-4">
+                <a href="#contact" class="btn-primary px-10 py-5 bg-black text-white rounded-full font-bold text-lg">
                     無料相談を予約する
                 </a>
-            </div>
-        </div>
-    </section>
-
-    <section id="services" class="py-32 px-6 bg-[#fbfbfd]">
-        <div class="max-w-[980px] mx-auto">
-            <div class="text-center mb-24 animate-on-scroll">
-                <h2 class="text-4xl md:text-5xl font-semibold mb-6 tracking-tight">Services</h2>
-                <p class="text-lg text-[#86868b] max-w-2xl mx-auto">
-                    課題解決のための、3つのアプローチ。
-                </p>
-            </div>
-            
-            <div class="grid md:grid-cols-3 gap-16 md:gap-24">
-                <div class="text-center animate-on-scroll delay-100">
-                    <div class="text-4xl mb-6 text-[#0071e3]">⚙️</div>
-                    <h3 class="text-2xl font-semibold mb-4 tracking-tight">業務自動化開発</h3>
-                    <p class="text-[#86868b] leading-relaxed">
-                        GAS × AI API連携。<br>
-                        ルーチンワークをゼロにする、専用ツールを開発します。
-                    </p>
-                </div>
-                <div class="text-center animate-on-scroll delay-200">
-                    <div class="text-4xl mb-6 text-[#0071e3]">🤝</div>
-                    <h3 class="text-2xl font-semibold mb-4 tracking-tight">導入・伴走支援</h3>
-                    <p class="text-[#86868b] leading-relaxed">
-                        ツール選定からプロンプト設計、社内研修まで。<br>自走できる体制を作ります。
-                    </p>
-                </div>
-                <div class="text-center animate-on-scroll delay-300">
-                    <div class="text-4xl mb-6 text-[#0071e3]">🎬</div>
-                    <h3 class="text-2xl font-semibold mb-4 tracking-tight">クリエイティブ制作</h3>
-                    <p class="text-[#86868b] leading-relaxed">
-                        AI編集者による記事・動画制作。<br>高品質かつ高速な納品を実現します。
-                    </p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="works" class="py-32 px-6">
-        <div class="max-w-[980px] mx-auto animate-on-scroll">
-            <h2 class="text-4xl md:text-5xl font-semibold mb-24 text-center tracking-tight">Proven Results</h2>
-            
-            <div class="space-y-32">
-                <div class="md:flex items-center justify-between gap-16 animate-on-scroll">
-                    <div class="md:w-2/5 mb-8 md:mb-0">
-                        <span class="text-[#0071e3] font-semibold text-sm tracking-wider uppercase mb-4 block">Consulting</span>
-                        <h3 class="text-3xl font-semibold mb-6 tracking-tight leading-tight">
-                            防災プロジェクト<br>議事録システム構築
-                        </h3>
-                        <p class="text-[#86868b] text-lg leading-relaxed">
-                            NotebookLMやGeminiを活用し、会議のリアルタイム文字起こしから構造化された議事録への変換を自動化。正確性が求められる現場で、作成時間を80%削減しました。
-                        </p>
-                    </div>
-                    <div class="md:w-3/5 aspect-video bg-[#f5f5f7] rounded-3xl flex items-center justify-center">
-                        <span class="text-[#86868b] font-medium">Image Area (ここに実績画像などを配置)</span>
-                    </div>
-                </div>
-
-                <div class="md:flex flex-row-reverse items-center justify-between gap-16 animate-on-scroll">
-                    <div class="md:w-2/5 mb-8 md:mb-0">
-                         <span class="text-[#0071e3] font-semibold text-sm tracking-wider uppercase mb-4 block">Development</span>
-                        <h3 class="text-3xl font-semibold mb-6 tracking-tight leading-tight">
-                            SNS自動投稿くん<br>(GAS × X API)
-                        </h3>
-                        <p class="text-[#86868b] text-lg leading-relaxed">
-                            個人事業主向けに開発。スプレッドシートにネタを書くだけで、指定時間にAIが文章を推敲し自動投稿。Cursorを用いて3日で実装完了しました。
-                        </p>
-                    </div>
-                     <div class="md:w-3/5 aspect-video bg-[#f5f5f7] rounded-3xl flex items-center justify-center">
-                        <span class="text-[#86868b] font-medium">Image Area</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="py-32 px-6 bg-[#1d1d1f] text-white text-center">
-        <div class="max-w-[980px] mx-auto animate-on-scroll">
-            <h2 class="text-3xl font-semibold mb-16 tracking-tight">Powered By Leading Technology</h2>
-            <div class="flex flex-wrap justify-center gap-x-12 gap-y-6 text-xl md:text-3xl font-semibold text-[#86868b] tracking-tight leading-relaxed">
-                <span>OpenAI GPT-4o</span>
-                <span>Gemini 1.5 Pro</span>
-                <span>Claude 3.5 Sonnet</span>
-                <span class="text-white">Manus</span>
-                <span class="text-white">Cursor</span>
-                <span class="text-white">NotebookLM</span>
-                <span>Midjourney</span>
-            </div>
-            <p class="text-[#86868b] mt-12 text-sm">
-                ※案件に応じて最適な技術を選定します。
-            </p>
-        </div>
-    </section>
-
-    <section id="about" class="py-32 px-6">
-        <div class="max-w-[800px] mx-auto text-center animate-on-scroll">
-            <h2 class="text-4xl font-semibold mb-12 tracking-tight">About & Contact</h2>
-            <div class="text-lg text-[#86868b] leading-relaxed space-y-8 mb-16">
-                <p>
-                    <strong class="text-[#1d1d1f] font-semibold">佐野 佑一郎 (Yuichiro Sano)</strong><br>
-                    AIコンサルタント / 編集者 / GUGA生成AIパスポート保有
-                </p>
-                <p>
-                    2022年まで運送業ドライバーとして1,000件以上の顧客対応を経験。「現場の言葉で話す」コミュニケーションが信条です。現在は最新AI技術（Manus, Cursor等）を実務に落とし込む「翻訳者」として活動しています。
-                </p>
-                <p class="text-base">
-                    導入相談、業務改善のご依頼など、まずはお気軽にご連絡ください。<br>
-                    原則3時間以内に返信いたします。
-                </p>
-            </div>
-
-            <div id="contact" class="animate-on-scroll delay-100">
-                <a href="mailto:your-email@example.com" class="inline-block px-12 py-5 bg-[#0071e3] text-white rounded-full font-medium text-xl hover:bg-[#0077ED] transition duration-300 ease-in-out transform hover:scale-105 shadow-xl">
-                    ✉️ メールで問い合わせる
+                <a href="#works" class="px-10 py-5 bg-white border border-gray-200 text-black rounded-full font-bold text-lg hover:bg-gray-50 transition">
+                    実績を見る
                 </a>
             </div>
         </div>
     </section>
 
-    <footer class="py-12 text-center text-[#86868b] text-xs border-t border-slate-100">
-        <div class="max-w-[980px] mx-auto px-6">
-            <p>&copy; 2025 Yuichiro Sano. All rights reserved.</p>
+    <section id="philosophy" class="py-32 px-6 bg-[#111] text-white">
+        <div class="max-w-[1080px] mx-auto text-center reveal">
+            <h2 class="text-3xl md:text-5xl font-semibold mb-12 tracking-tight">AI is not Magic.</h2>
+            <div class="text-lg md:text-2xl text-gray-400 leading-relaxed max-w-3xl mx-auto space-y-8 font-light">
+                <p>
+                    私は「AIを使うこと」そのものを目的としません。<br>
+                    <span class="text-white font-medium">「AIで何を減らし、人間は何に集中すべきか」</span><br>
+                    この問いの設計こそが、私の提供する最大の価値です。
+                </p>
+                <p class="text-base text-gray-500 mt-8">
+                    AIは魔法ではありません。<br>だからこそ、泥臭い業務理解と設計が必要です。
+                </p>
+            </div>
         </div>
-    </footer>
+    </section>
+
+    <section class="py-32 px-6 bg-white">
+        <div class="max-w-[1080px] mx-auto grid md:grid-cols-2 gap-16 items-center reveal">
+            <div>
+                <h2 class="text-sm font-bold text-gray-400 uppercase tracking-widest mb-4">About</h2>
+                <h3 class="text-3xl md:text-4xl font-semibold mb-6 leading-tight">
+                    編集者の視点で、<br>業務フローを再構築する。
+                </h3>
+                <div class="space-y-6 text-gray-600 leading-relaxed">
+                    <p>
+                        <strong>AIオウンドメディア編集者 × コンサルタント</strong>
+                    </p>
+                    <p>
+                        私の強みは、単なるツールの導入支援ではありません。「業務フロー全体をどう変えるか」という設計図を描くことです。
+                    </p>
+                    <p>
+                        「人が判断すべき領域」と「AIに任せる領域」を明確に切り分け、誰がやっても同じ品質が出せる（再現性のある）仕組みを構築します。
+                    </p>
+                </div>
+            </div>
+            <div class="bg-gray-50 p-10 rounded-3xl">
+                <h4 class="font-bold mb-6 text-xl">Policy</h4>
+                <ul class="space-y-4">
+                    <li class="flex items-start">
+                        <span class="mr-4 text-xl">✅</span>
+                        <span class="text-gray-600"><strong>属人化の排除：</strong>あなたがいなくても回る仕組みを作る</span>
+                    </li>
+                    <li class="flex items-start">
+                        <span class="mr-4 text-xl">✅</span>
+                        <span class="text-gray-600"><strong>現場目線：</strong>理論ではなく、実務で使えるフローのみ提案</span>
+                    </li>
+                    <li class="flex items-start">
+                        <span class="mr-4 text-xl">✅</span>
+                        <span class="text-gray-600"><strong>判断の設計：</strong>人のチェック工程を適切に残す</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section id="works" class="py-32 px-6 bg-[#FAFAFA]">
+        <div class="max-w-[1080px] mx-auto">
+            <h2 class="text-4xl font-semibold mb-16 text-center tracking-tight reveal">Proven Results</h2>
+            
+            <div class="grid md:grid-cols-2 gap-8">
+                <div class="bg-white p-10 rounded-[2rem] shadow-sm border border-gray-100 md:col-span-2 reveal hover:shadow-xl transition-shadow duration-300">
+                    <div class="md:flex justify-between items-start mb-8">
+                        <div>
+                            <span class="px-3 py-1 bg-blue-50 text-blue-600 text-xs font-bold rounded-full uppercase tracking-wider">Public Work</span>
+                            <h3 class="text-3xl font-bold mt-4 mb-2">防災プロジェクト議事録設計</h3>
+                            <p class="text-gray-500">地域防災の取り組みにおける情報整理・議事録自動化</p>
+                        </div>
+                        <div class="mt-6 md:mt-0 text-right">
+                            <p class="text-sm text-gray-400 font-bold uppercase">Time Reduction</p>
+                            <p class="text-5xl font-bold text-blue-600">-83<span class="text-2xl">%</span></p>
+                        </div>
+                    </div>
+                    <div class="grid md:grid-cols-2 gap-8 border-t border-gray-100 pt-8">
+                        <div>
+                            <h4 class="font-bold mb-2 text-sm text-gray-900">課題</h4>
+                            <p class="text-sm text-gray-600 leading-relaxed">会議後の作成に時間がかかり、担当者によって品質（粒度）がバラバラだった。</p>
+                        </div>
+                        <div>
+                            <h4 class="font-bold mb-2 text-sm text-gray-900">解決策</h4>
+                            <p class="text-sm text-gray-600 leading-relaxed">「決定事項・背景・次アクション」を固定フォーマット化し、要点抽出プロンプトを設計。60分かかっていた作業を10分に短縮し、属人化を解消。</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white p-10 rounded-[2rem] shadow-sm border border-gray-100 reveal hover:shadow-xl transition-shadow duration-300">
+                    <span class="px-3 py-1 bg-green-50 text-green-600 text-xs font-bold rounded-full uppercase tracking-wider">Media</span>
+                    <h3 class="text-2xl font-bold mt-4 mb-4">AIオウンドメディア編集</h3>
+                    <div class="space-y-4 text-gray-600 text-sm leading-relaxed">
+                        <p><strong>工夫点：</strong>「AIが書いてよい範囲」と「人が必ず判断する範囲（校正・倫理チェック）」を明確に定義。</p>
+                        <p><strong>成果：</strong>ライターによる品質差を解消し、差し戻し回数を大幅に削減。安定した記事量産体制を確立。</p>
+                    </div>
+                </div>
+
+                <div class="bg-white p-10 rounded-[2rem] shadow-sm border border-gray-100 reveal hover:shadow-xl transition-shadow duration-300">
+                    <span class="px-3 py-1 bg-purple-50 text-purple-600 text-xs font-bold rounded-full uppercase tracking-wider">Automation</span>
+                    <h3 class="text-2xl font-bold mt-4 mb-4">GAS × AI 業務自動化</h3>
+                    <div class="space-y-4 text-gray-600 text-sm leading-relaxed">
+                        <p><strong>工夫点：</strong>高度すぎる自動化は避け、「後から修正できるシンプル構成」を重視。請求書・進捗管理をシステム化。</p>
+                        <p><strong>成果：</strong>手作業による管理ミスを防止し、確認作業の工数を削減。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="services" class="py-32 px-6 bg-white">
+        <div class="max-w-[1080px] mx-auto text-center reveal">
+            <h2 class="text-4xl font-semibold mb-20 tracking-tight">Services & Tools</h2>
+
+            <div class="grid md:grid-cols-4 gap-8 mb-24">
+                <div class="p-6">
+                    <div class="text-3xl mb-4">🔍</div>
+                    <h3 class="font-bold mb-2">導入設計</h3>
+                    <p class="text-xs text-gray-500">業務整理・ボトルネック発見</p>
+                </div>
+                <div class="p-6">
+                    <div class="text-3xl mb-4">📝</div>
+                    <h3 class="font-bold mb-2">プロンプト開発</h3>
+                    <p class="text-xs text-gray-500">実務で使える精度の追求</p>
+                </div>
+                <div class="p-6">
+                    <div class="text-3xl mb-4">⚙️</div>
+                    <h3 class="font-bold mb-2">自動化構築</h3>
+                    <p class="text-xs text-gray-500">GAS / API連携開発</p>
+                </div>
+                <div class="p-6">
+                    <div class="text-3xl mb-4">🎓</div>
+                    <h3 class="font-bold mb-2">レクチャー</h3>
+                    <p class="text-xs text-gray-500">自走支援・人材育成</p>
+                </div>
+            </div>
+
+            <div class="border-t border-b border-gray-100 py-12">
+                <p class="text-xs font-bold text-gray-400 uppercase tracking-widest mb-6">Tools I Use</p>
+                <div class="flex flex-wrap justify-center gap-x-12 gap-y-6 text-lg font-semibold text-gray-400">
+                    <span class="text-black">ChatGPT</span>
+                    <span class="text-black">Gemini</span>
+                    <span>Cursor</span>
+                    <span>NotebookLM</span>
+                    <span>Midjourney</span>
+                    <span>GAS</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="py-32 px-6 bg-[#FAFAFA]">
+        <div class="max-w-2xl mx-auto text-center reveal">
+            <h2 class="text-3xl md:text-5xl font-bold mb-8 tracking-tight">Ready to Transform?</h2>
+            <p class="text-gray-500 mb-12 text-lg leading-relaxed">
+                AI導入は、ゴールではありません。<br>
+                「業務が楽になった」「成果が上がった」という実感まで伴走します。<br>
+                まずは現状の課題をカジュアルにお聞かせください。
+            </p>
+            <a href="mailto:your-email@example.com" class="btn-primary inline-flex items-center justify-center px-12 py-5 bg-black text-white rounded-full font-bold text-xl shadow-2xl">
+                お問い合わせはこちら
+            </a>
+            <p class="mt-8 text-xs text-gray-400">
+                AI Business Architect | Yuichiro Sano<br>
+                &copy; 2025 All Rights Reserved.
+            </p>
+        </div>
+    </section>
 
     <script>
-        document.addEventListener("DOMContentLoaded", () => {
+        // スクロール検知
+        document.addEventListener('DOMContentLoaded', () => {
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
-                        entry.target.classList.add('is-visible');
+                        entry.target.classList.add('active');
                     }
                 });
             }, { threshold: 0.1 });
 
-            document.querySelectorAll('.animate-on-scroll').forEach((el) => {
+            document.querySelectorAll('.reveal').forEach((el) => {
                 observer.observe(el);
             });
         });
     </script>
-
 </body>
 </html>
